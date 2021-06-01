@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.demo.jetpackcompose.ui.theme.JetpackComposeTheme
 
 /*Hello World Program*/
-class MainActivity : ComponentActivity() {
+class Episode1 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

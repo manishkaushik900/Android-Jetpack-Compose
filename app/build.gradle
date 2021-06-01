@@ -57,6 +57,7 @@ dependencies {
 //    implementation "com.google.accompanist:accompanist-coil:0.9.0"
 //    implementation "com.google.accompanist:accompanist-coil:0.9.0"
     implementation "com.google.accompanist:accompanist-glide:0.10.0"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
 //    implementation("io.coil-kt:coil:1.2.1")
 
     testImplementation 'junit:junit:4.+'

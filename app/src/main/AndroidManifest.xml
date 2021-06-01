@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackCompose">
         <activity
-            android:name=".Episode5"
+            android:name=".Episode4"
             android:exported="true"
-            android:label="@string/title_activity_episode5"
+            android:label="@string/title_activity_episode4"
             android:theme="@style/Theme.JetpackCompose.NoActionBar" />
         <activity
             android:name=".Episode3"
@@ -27,12 +27,12 @@
             android:label="@string/title_activity_episode2"
             android:theme="@style/Theme.JetpackCompose.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Episode1"
             android:exported="true"
             android:label="@string/title_activity_episode3"
             android:theme="@style/Theme.JetpackCompose.NoActionBar" />
         <activity
-            android:name=".Episode4"
+            android:name=".Episode5"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.JetpackCompose.NoActionBar">
@@ -42,6 +42,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Episode6"
+            android:exported="true"
+            android:label="@string/title_activity_episode5"
+            android:theme="@style/Theme.JetpackCompose.NoActionBar" />
     </application>
 
 </manifest>
