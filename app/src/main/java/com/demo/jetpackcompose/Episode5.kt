@@ -32,8 +32,6 @@ import com.demo.jetpackcompose.ui.theme.JetpackComposeTheme
 import com.google.accompanist.glide.rememberGlidePainter
 import kotlinx.coroutines.launch
 
-/*Create a row image tutorial with clicks*/
-
 /*Layouts in Jetpack Compose
 * When building your own composables, you can use the Slots API pattern to make them more reusable.
 * Compose comes with built-in Material Component composables that you can use to create your app.
@@ -41,13 +39,13 @@ import kotlinx.coroutines.launch
 
 /*Scaffold allows you to implement a UI with the basic Material Design layout structure.
 *It provides slots for the most common top-level Material components such as TopAppBar, BottomAppBar, FloatingActionButton and Drawer. With Scaffold, you make sure these components will be positioned and work together correctly.*/
-class Episode4 : ComponentActivity() {
+class Episode5 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeTheme {
-                AppContainer {
-                    PhotographerCard()
+                AppContainer5 {
+                    LayoutsCodelab()
                 }
             }
         }
@@ -55,58 +53,95 @@ class Episode4 : ComponentActivity() {
 }
 
 @Composable
-fun AppContainer(content: @Composable () -> Unit) {
+fun AppContainer5(content: @Composable () -> Unit) {
     // A surface container using the 'background' color from the theme
     Surface(color = MaterialTheme.colors.background) {
         content()
     }
 }
 
-@Preview
+
 @Composable
-fun LayoutsCodelabPreview3() {
-    JetpackComposeTheme {
-        AppContainer {
-            PhotographerCard()
+fun LayoutsCodelab() {
+//    Text(text = "Hi there!")
+    ScrollingList()
+}
+
+
+@Composable
+fun SimpleList() {
+    // We save the scrolling position with this state that can also
+    // be used to programmatically scroll the list
+    val scrollState = rememberLazyListState()
+    /*: LazyColumn in Jetpack Compose is the equivalent of RecyclerView in Android Views.*/
+    LazyColumn(state = scrollState) {
+        items(100) {
+//           Text(text = "Item #$it")
+            ImageListItem(index = it)
         }
     }
 }
 
 @Composable
-fun PhotographerCard() {
-    val context = LocalContext.current
+fun ImageListItem(index: Int) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
 
-    //Modifier sequence matter according to component
-    //like in Row if we use click after padding then it will not work
-    Row(modifier = Modifier
-        .clip(RoundedCornerShape(10.dp))
-        .background(MaterialTheme.colors.surface)
-        .clickable(onClick = {Toast.makeText(context,"Clicked",Toast.LENGTH_SHORT).show()})
-        .fillMaxWidth()
-        .padding(16.dp)
-        ) {
+        Image(
+            painter = rememberGlidePainter("https://picsum.photos/300/300"),
+            contentDescription = "Android Logo",
+            modifier = Modifier.size(50.dp)
 
-        Surface(
-            modifier = Modifier.size(50.dp).padding(2.dp).align(Alignment.CenterVertically),
-            shape = CircleShape,
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f),
-            border = BorderStroke(2.dp,color = Color.Black),elevation = 10.dp
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.header),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds
-            )
-        }
+        )
         Spacer(Modifier.width(10.dp))
-        Column(modifier = Modifier.padding(10.dp)
-            .align(Alignment.CenterVertically)) {
-            Text("Manish Kaushik", fontWeight = FontWeight.Bold)
-            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                Text(text = "Few minutes ago", style = MaterialTheme.typography.body2)
+        Text("Items #$index", style = MaterialTheme.typography.subtitle1)
+    }
+}
+
+@Composable
+fun ScrollingList() {
+    val listSize = 100
+    // We save the scrolling position with this state
+    val scrollState = rememberLazyListState()
+    // We save the coroutine scope where our animated scroll will be executed
+    val coroutineScope = rememberCoroutineScope()
+
+    Column {
+        Row {
+            Button(onClick = {
+                coroutineScope.launch {
+                    // 0 is the first item index
+                    scrollState.animateScrollToItem(0)
+                }
+            }) {
+                Text("Scroll to the top")
+            }
+
+            Button(onClick = {
+                coroutineScope.launch {
+                    // listSize - 1 is the last index of the list
+                    scrollState.animateScrollToItem(listSize - 1)
+                }
+            }) {
+                Text("Scroll to the end")
+            }
+        }
+
+        LazyColumn(state = scrollState) {
+            items(listSize) {
+                ImageListItem(it)
             }
         }
     }
+}
 
+
+@Preview
+@Composable
+fun LayoutsCodelabPreview() {
+    JetpackComposeTheme {
+        AppContainer {
+            LayoutsCodelab()
+        }
+    }
 }
 
