@@ -11,6 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackCompose">
+
+        <activity
+            android:name=".Episode8"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.JetpackCompose.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Episode7"
+            android:exported="true"
+            android:label="@string/title_activity_episode8"
+            android:theme="@style/Theme.JetpackCompose.NoActionBar" />
+        <activity
+            android:name=".Episode5"
+            android:exported="true"
+            android:label="@string/title_activity_episode7"
+            android:theme="@style/Theme.JetpackCompose.NoActionBar" />
         <activity
             android:name=".Episode4"
             android:exported="true"
@@ -31,17 +54,6 @@
             android:exported="true"
             android:label="@string/title_activity_episode3"
             android:theme="@style/Theme.JetpackCompose.NoActionBar" />
-        <activity
-            android:name=".Episode5"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.JetpackCompose.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".Episode6"
